@@ -181,7 +181,7 @@ export default function App() {
                   <span className="text-white text-sm" style={{ fontWeight: 700 }}>M</span>
                 </div>
                 <span className="text-lg text-white" style={{ fontWeight: 600 }}>
-                  Portfolio 
+                  Muditha Welivita
                 </span>
               </div>
             </motion.div>
