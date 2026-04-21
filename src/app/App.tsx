@@ -70,7 +70,7 @@ export default function App() {
       title: 'Design Portfolio',
       description: 'Modern and responsive UI/UX design showcase',
       tags: ['UI/UX', 'Design', 'Figma'],
-      image: 'Img/design1.jpg',
+      image: '🎨',
       link: 'https://example.com/design-portfolio',
       type: 'design'
     },
@@ -93,7 +93,7 @@ export default function App() {
       title: 'Graphic Design Work',
       description: 'Creative branding and graphic design projects',
       tags: ['Branding', 'Creative', 'Design'],
-      image: 'Img/design2.jpg',
+      image: '🎨',
       link: 'https://example.com/graphic-design',
       type: 'design'
     },
