@@ -363,7 +363,7 @@ export default function App() {
             >
               <div className="relative w-full max-w-md">
                 <img
-                  src="\images\mudithabg2.png"
+                  src="/images/mudithabg2.png"
                   alt="Muditha Welivita"
                   className="w-full h-auto object-cover grayscale"
                   style={{ filter: 'grayscale(100%) contrast(1.1)' }}
