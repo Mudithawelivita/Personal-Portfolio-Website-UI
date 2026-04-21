@@ -109,7 +109,7 @@ export default function App() {
     {
       icon: Monitor,
       title: 'Graphic Designs',
-      description: 'proffessional graphic design services for your business and personal needs'
+      description: 'Professional graphic design services for your business and personal needs'
     },
     {
       icon: Palette,
