@@ -21,17 +21,22 @@ export default function App() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const homeRef = useRef<HTMLDivElement>(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+
       if (homeRef.current) {
         const rect = homeRef.current.getBoundingClientRect();
         setMousePos({
@@ -41,11 +46,11 @@ export default function App() {
       }
     };
 
-    const homeSection = homeRef.current;
-    if (homeSection) {
-      homeSection.addEventListener('mousemove', handleMouseMove);
-      return () => homeSection.removeEventListener('mousemove', handleMouseMove);
-    }
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   const skills = [
@@ -109,17 +114,46 @@ export default function App() {
     {
       icon: Monitor,
       title: 'Graphic Designs',
-      description: 'Professional graphic design services for your business and personal needs'
+      description: 'Professional graphic design services for your business and personal needs',
+      pricing: [
+        { name: 'Logo Design', price: 'LKR 5000' },
+        { name: 'Banner Design', price: 'LKR 2000' },
+        { name: 'Social Media Post', price: 'LKR 1000' },
+        { name: 'Business Card', price: 'LKR 1500' }
+      ]
     },
     {
       icon: Palette,
       title: 'Video Editing',
-      description: 'Professional video editing services for your content'
+      description: 'Professional video editing services for your content',
+      pricing: [
+        { name: 'Short Video (1-2 min)', price: 'LKR 5000' },
+        { name: 'Short Video (3-10 min)', price: 'LKR 7000' },
+        { name: 'Medium Video (10 - 30 min)', price: 'LKR 10,000' },
+        { name: 'Long Video (30 min - 1 hour)', price: 'LKR 20,000' },
+        { name: 'Thumbnail Design', price: 'LKR 1000' }
+      ]
+    },
+    {
+      icon: Palette,
+      title: 'Live Streaming setup',
+      description: 'Setup your live stream with professional quality and engaging visuals',
+      pricing: [
+        { name: 'Basic Setup', price: 'LKR 6000' },
+        { name: 'Advanced Setup', price: 'LKR 12,000' },
+        { name: 'Full Production', price: 'LKR 50,000' }
+      ]
     },
     {
       icon: WrenchIcon,
       title: 'Content Creation',
-      description: 'Creating engaging tech content for YouTube and social media platforms'
+      description: 'Creating engaging tech content for YouTube and social media platforms',
+      pricing: [
+        { name: 'YouTube Script', price: 'null' },
+        { name: 'Social Media Post', price: 'null' },
+        { name: 'Blog Article', price: 'null' },
+        { name: 'Content Strategy', price: 'null' }
+      ]
     }
   ];
 
@@ -129,21 +163,23 @@ export default function App() {
     setSubmitMessage('');
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formsubmit.co/ajax/mudithamahendraweli@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          _subject: formData.subject,
           message: formData.message,
         }),
       });
 
       if (response.ok) {
         setSubmitMessage('Thank you for your message! I will get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         throw new Error('Failed to send');
       }
@@ -157,6 +193,15 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      {/* Animated Cursor Dot */}
+      <div
+        className="cursor-dot"
+        style={{
+          left: `${cursorPos.x}px`,
+          top: `${cursorPos.y}px`,
+        }}
+      />
+
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <span className="dust-particle" style={{ top: '10%', left: '12%', width: '10px', height: '10px', animationDelay: '0s', animationDuration: '12s' }} />
         <span className="dust-particle" style={{ top: '25%', left: '40%', width: '8px', height: '8px', animationDelay: '1.8s', animationDuration: '14s' }} />
@@ -262,7 +307,7 @@ export default function App() {
             const duration = 8 + Math.random() * 4;
             const swayDuration = 4 + Math.random() * 2;
             const swayAmount = 30 + Math.random() * 20;
-            
+
             const distance = Math.hypot(mousePos.x - baseX * 3.5, mousePos.y - baseX * 3.5);
             const angle = Math.atan2(mousePos.y - baseX * 3.5, mousePos.x - baseX * 3.5);
             const repelDistance = Math.min(150, Math.max(0, 150 - distance));
@@ -374,6 +419,132 @@ export default function App() {
               </div>
             </motion.div>
           </div>
+
+          {/* Vertical Social Media Bar - Right Side */}
+          <div className="fixed right-8 top-1/2 transform -translate-y-1/2 hidden lg:flex flex-col gap-6 z-40">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <a
+                href="https://www.youtube.com/@mudiyascafe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-white/40 transition-all duration-300 hover:bg-white/20"
+                >
+                  <img
+                    src="/images/youtube.png"
+                    alt="YouTube"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              <a
+                href="https://www.linkedin.com/in/muditha-welivita-23b6b4363"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-white/40 transition-all duration-300 hover:bg-white/20"
+                >
+                  <img
+                    src="/images/linkedin.png"
+                    alt="LinkedIn"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
+              <a
+                href="https://www.tiktok.com/@mudiyaofficial?is_from_webapp=1&sender_device=pc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-white/40 transition-all duration-300 hover:bg-white/20"
+                >
+                  <img
+                    src="/images/tiktok.png"
+                    alt="TikTok"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
+              <a
+                href="https://www.facebook.com/muditha.welivita.9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-white/40 transition-all duration-300 hover:bg-white/20"
+                >
+                  <img
+                    src="/images/facebook.png"
+                    alt="Facebook"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+            >
+              <a
+                href="mailto:mudithamahendraweli@gmail.com"
+                className="group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-white/10 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:shadow-lg hover:shadow-white/40 transition-all duration-300 hover:bg-white/20"
+                >
+                  <img
+                    src="/images/email.png"
+                    alt="Email"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -402,7 +573,7 @@ export default function App() {
                 through my YouTube channel.
               </p>
               <p className="text-slate-300 text-lg leading-relaxed">
-                
+
               </p>
             </div>
           </motion.div>
@@ -454,7 +625,7 @@ export default function App() {
                     <h3 className="mb-3 text-xl text-white group-hover:text-pink-400 transition-colors" style={{ fontWeight: 600 }}>
                       {project.title}
                     </h3>
-                    
+
                     {project.link && (
                       <a
                         href={project.link}
@@ -575,7 +746,7 @@ export default function App() {
                   <img src="/images/cmm.jpg" alt="Design 5" onClick={() => setSelectedImage('/images/cmm.jpg')} className="w-64 h-40 object-cover rounded-lg border border-white/10 cursor-pointer hover:border-pink-500 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300" />
                 </div>
 
-                 {/* Duplicate set for seamless loop */}
+                {/* Duplicate set for seamless loop */}
                 <div className="flex-shrink-0 mx-4">
                   <img src="/images/10.jpeg" alt="Design 4" onClick={() => setSelectedImage('/images/10.jpeg')} className="w-64 h-40 object-cover rounded-lg border border-white/10 cursor-pointer hover:border-pink-500 hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300" />
                 </div>
@@ -614,7 +785,7 @@ export default function App() {
               Services
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -622,7 +793,8 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.15, duration: 0.5 }}
                   viewport={{ once: true }}
-                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-pink-500/50 transition-all duration-300 text-center"
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-pink-500/50 transition-all duration-300 text-center cursor-pointer"
+                  onClick={() => setSelectedService(service)}
                 >
                   <div className="inline-block p-4 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-xl mb-4">
                     <service.icon className="w-10 h-10 text-pink-400" />
@@ -739,7 +911,7 @@ export default function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 lg:px-12 bg-white/5">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -750,7 +922,7 @@ export default function App() {
               Get In Touch
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12">
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
@@ -776,6 +948,19 @@ export default function App() {
                       required
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-pink-500 text-white placeholder-slate-500 transition-all"
                       placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block mb-2 text-slate-300">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      required
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-pink-500 text-white placeholder-slate-500 transition-all"
+                      placeholder="Subject of your message"
                     />
                   </div>
 
@@ -819,7 +1004,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-slate-400 text-sm">Email</p>
-                      <p className="text-white">mudithamahendraweli@email.com</p>
+                      <p className="text-white">mudithamahendraweli@gmail.com</p>
                     </div>
                   </div>
 
@@ -911,6 +1096,38 @@ export default function App() {
               alt="Project preview"
               className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
             />
+          </div>
+        </div>
+      )}
+
+      {/* Service Pricing Modal */}
+      {selectedService && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setSelectedService(null)}>
+          <div className="relative max-w-md w-full bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setSelectedService(null)}
+              className="absolute top-4 right-4 text-white hover:text-pink-400 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h3 className="text-2xl text-white mb-6 font-semibold">{selectedService.title} Pricing</h3>
+            <div className="space-y-4">
+              {selectedService.pricing.map((item: any, index: number) => (
+                <div key={index} className="flex justify-between items-center py-2 border-b border-white/10 last:border-b-0">
+                  <span className="text-slate-300">{item.name}</span>
+                  <span className="text-pink-400 font-semibold text-lg">{item.price}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <a
+                href="#contact"
+                onClick={() => setSelectedService(null)}
+                className="inline-block px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
+              >
+                Contact for Quote
+              </a>
+            </div>
           </div>
         </div>
       )}
