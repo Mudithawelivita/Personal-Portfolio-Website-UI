@@ -36,3 +36,35 @@
 .marquee-wrapper:hover .animate-marquee-reverse {
   animation-play-state: paused;
 }
+
+/* Cursor Animation */
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Custom cursor styling */
+html {
+  cursor: none;
+}
+
+/* Cursor dot animation */
+.cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0.3) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: cursorPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
