@@ -17,6 +17,7 @@ import {
   X
 } from 'lucide-react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -1133,6 +1134,7 @@ export default function App() {
         </div>
       )}
       <SpeedInsights />
+      <Analytics />
     </div>
   );
 }
