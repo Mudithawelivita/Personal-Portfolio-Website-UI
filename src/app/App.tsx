@@ -116,10 +116,11 @@ export default function App() {
       title: 'Graphic Designs',
       description: 'Professional graphic design services for your business and personal needs',
       pricing: [
-        { name: 'Logo Design', price: 'LKR 5000' },
-        { name: 'Banner Design', price: 'LKR 2000' },
-        { name: 'Social Media Post', price: 'LKR 1000' },
-        { name: 'Business Card', price: 'LKR 1500' }
+        { name: 'Logo Design', price: 'LKR 5000 - 10000', detail: 'Custom logo concepts with 2 revisions' },
+        { name: 'Banner Design', price: 'LKR 2000', detail: 'High-quality banners for web and print with 2 revisions' },
+        { name: 'Social Media Post', price: 'LKR 1000', detail: 'Graphics optimized for specific platforms(youtube,Facebook,Instergram,etc) with 2 revisions' },
+        { name: 'Business Card', price: 'LKR 1500', detail: 'Professional double-sided card designs with 2 revisions' },
+        //{ name: 'Brand Identity Kit', price: 'LKR 10,000', detail: 'Full branding including fonts, colors, and guidelines' }``
       ]
     },
     {
@@ -127,11 +128,11 @@ export default function App() {
       title: 'Video Editing',
       description: 'Professional video editing services for your content',
       pricing: [
-        { name: 'Short Video (1-2 min)', price: 'LKR 5000' },
-        { name: 'Short Video (3-10 min)', price: 'LKR 7000' },
-        { name: 'Medium Video (10 - 30 min)', price: 'LKR 10,000' },
-        { name: 'Long Video (30 min - 1 hour)', price: 'LKR 20,000' },
-        { name: 'Thumbnail Design', price: 'LKR 1000' }
+        { name: 'Short Video (1-2 min)', price: 'LKR 5000', detail: 'Perfect for TikTok, Reels, or Shorts' },
+        { name: 'Short Video (3-10 min)', price: 'LKR 7000', detail: 'Standard YouTube,Podcast videos with basic effects' },
+        { name: 'Medium Video (10 - 30 min)', price: 'LKR 10,000', detail: 'Standard YouTube,Podcast videos with Advanced effects' },
+        { name: 'Long Video (30 min - 1 hour)', price: 'LKR 20,000', detail: 'Podcast,documentaries, or full event coverage' },
+        { name: 'Thumbnail Design', price: 'LKR 1000', detail: 'Clickable and vibrant YouTube thumbnails' }
       ]
     },
     {
@@ -139,9 +140,9 @@ export default function App() {
       title: 'Live Streaming setup',
       description: 'Setup your live stream with professional quality and engaging visuals',
       pricing: [
-        { name: 'Basic Setup', price: 'LKR 6000' },
-        { name: 'Advanced Setup', price: 'LKR 12,000' },
-        { name: 'Full Production', price: 'LKR 50,000' }
+        { name: 'Basic Setup', price: 'LKR 6000', detail: 'OBS configuration and basic overlays' },
+        { name: 'Advanced Setup', price: 'LKR 12,000', detail: 'Full Live Stream setup for gaming,podcast,ect with overlays' },
+        { name: 'Full Production', price: 'LKR 50,000', detail: 'Full cutomized live streaming setup with custom ovale(Starting soon/ending,etc),alerts,Scene transition' }
       ]
     },
     {
@@ -149,10 +150,10 @@ export default function App() {
       title: 'Content Creation',
       description: 'Creating engaging tech content for YouTube and social media platforms',
       pricing: [
-        { name: 'YouTube Script', price: 'null' },
-        { name: 'Social Media Post', price: 'null' },
-        { name: 'Blog Article', price: 'null' },
-        { name: 'Content Strategy', price: 'null' }
+       // { name: 'YouTube Script', price: 'LKR 3000', detail: 'Well-researched scripts with hooks and SEO tags' },
+        //{ name: 'Social Media Post', price: 'LKR 1500', detail: 'Caption writing and trending hashtag research' },
+       // { name: 'Blog Article', price: 'LKR 4000', detail: 'SEO-optimized articles (500-1000 words)' },
+       // { name: 'Content Strategy', price: 'LKR 8000', detail: 'Monthly planning and content calendar' }
       ]
     }
   ];
@@ -772,6 +773,56 @@ export default function App() {
         </div>
       </section>
 
+      {/* Brands I Work With Section */}
+      <section className="py-20 px-6 lg:px-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl text-white mb-4" style={{ fontWeight: 700 }}>
+              Brands I Work With
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Trusted by amazing brands and creators across Sri Lanka
+            </p>
+          </motion.div>
+
+          {/* Brands Grid */}
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { name: 'WESL', logo: '/images/wesl.jpg' },
+              { name: 'Radio WESL', logo: '/images/radiowesl.jpg' },
+              { name: 'Ecopal Engineering', logo: '/images/ecopal.jpg' },
+              { name: 'Toplaps', logo: '/images/toplaps.jpg' },
+              { name: 'PC Clinic', logo: '/images/pcc.jpg' },
+            ].map((brand, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-10 py-8 hover:border-pink-500/50 hover:bg-white/10 transition-all duration-300 cursor-default group"
+                style={{ minWidth: '160px', flex: '1 1 160px', maxWidth: '220px' }}
+              >
+                <div className="w-24 h-24 flex items-center justify-center mb-4 overflow-hidden rounded-xl group-hover:scale-110 transition-transform duration-300">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+                <span className="text-slate-400 group-hover:text-white font-medium text-sm text-center transition-colors duration-300">{brand.name}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" className="py-24 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto">
@@ -1113,9 +1164,12 @@ export default function App() {
             <h3 className="text-2xl text-white mb-6 font-semibold">{selectedService.title} Pricing</h3>
             <div className="space-y-4">
               {selectedService.pricing.map((item: any, index: number) => (
-                <div key={index} className="flex justify-between items-center py-2 border-b border-white/10 last:border-b-0">
-                  <span className="text-slate-300">{item.name}</span>
-                  <span className="text-pink-400 font-semibold text-lg">{item.price}</span>
+                <div key={index} className="py-3 border-b border-white/10 last:border-b-0">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-slate-200 font-medium">{item.name}</span>
+                    <span className="text-pink-400 font-semibold text-lg">{item.price}</span>
+                  </div>
+                  {item.detail && <p className="text-slate-400 text-sm leading-snug">{item.detail}</p>}
                 </div>
               ))}
             </div>
