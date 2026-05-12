@@ -116,7 +116,7 @@ export default function App() {
       title: 'Graphic Designs',
       description: 'Professional graphic design services for your business and personal needs',
       pricing: [
-        { name: 'Logo Design', price: 'LKR 5000 - 10000', detail: 'Custom logo concepts with 2 revisions' },
+        { name: 'Logo Design', price: 'LKR 5000 - 10000', detail: 'Custom logo concepts with 2 revisions.' },
         { name: 'Banner Design', price: 'LKR 2000', detail: 'High-quality banners for web and print with 2 revisions' },
         { name: 'Social Media Post', price: 'LKR 1000', detail: 'Graphics optimized for specific platforms(youtube,Facebook,Instergram,etc) with 2 revisions' },
         { name: 'Business Card', price: 'LKR 1500', detail: 'Professional double-sided card designs with 2 revisions' },
