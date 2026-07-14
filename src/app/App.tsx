@@ -14,6 +14,7 @@ import {
   Monitor,
   WrenchIcon,
   Menu,
+  Star,
   X
 } from 'lucide-react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -121,7 +122,7 @@ export default function App() {
         { name: 'Banner Design', price: 'LKR 2000', detail: 'High-quality banners for web and print with 2 revisions' },
         { name: 'Social Media Post', price: 'LKR 1000', detail: 'Graphics optimized for specific platforms(youtube,Facebook,Instergram,etc) with 2 revisions' },
         { name: 'Business Card', price: 'LKR 1500', detail: 'Professional double-sided card designs with 2 revisions' },
-        //{ name: 'Brand Identity Kit', price: 'LKR 10,000', detail: 'Full branding including fonts, colors, and guidelines' }``
+        //{ name: 'Brand Identity Kit', price: 'LKR 10,000', detail: 'Full branding including fonts, colors, and guidelines' }
       ]
     },
     {
@@ -156,6 +157,27 @@ export default function App() {
        // { name: 'Blog Article', price: 'LKR 4000', detail: 'SEO-optimized articles (500-1000 words)' },
        // { name: 'Content Strategy', price: 'LKR 8000', detail: 'Monthly planning and content calendar' }
       ]
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Nadeesha Fernando',
+      role: 'Brand Owner',
+      rating: 5,
+      message: 'Muditha delivered stunning social media graphics quickly. Highly professional and creative.'
+    },
+    {
+      name: 'Kasun Perera',
+      role: 'Event Organizer',
+      rating: 4.5,
+      message: 'Great video editing work with fast turnaround. Excellent communication.'
+    },
+    {
+      name: 'Shalini Jayawardena',
+      role: 'Podcast Host',
+      rating: 5,
+      message: 'Amazing design and editing support. Helped my brand look more polished.'
     }
   ];
 
@@ -255,6 +277,9 @@ export default function App() {
               <a href="#projects" className="text-white hover:text-pink-500 transition-colors text-sm">
                 Projects
               </a>
+              <a href="#testimonials" className="text-white hover:text-pink-500 transition-colors text-sm">
+                Feedback
+              </a>
               <a href="#youtube" className="text-white hover:text-pink-500 transition-colors text-sm">
                 Videos
               </a>
@@ -288,6 +313,9 @@ export default function App() {
               </a>
               <a href="#projects" className="block text-white hover:text-pink-500 transition-colors">
                 Projects
+              </a>
+              <a href="#testimonials" className="block text-white hover:text-pink-500 transition-colors">
+                Feedback
               </a>
               <a href="#youtube" className="block text-white hover:text-pink-500 transition-colors">
                 Videos
@@ -647,6 +675,8 @@ export default function App() {
         </div>
       </section>
 
+      {/* Client Feedback Section removed temporarily */}
+
       {/* Marquee Gallery Section */}
       <section className="py-16 px-6 lg:px-12 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -891,8 +921,8 @@ export default function App() {
                   <div className="relative bg-black" style={{ paddingBottom: '56.25%' }}>
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/tud9zBSmNCo?si=ZfSO890WD5dinczY"
-                      title="How to Stream Using Two PCs"
+                      src="https://www.youtube.com/embed/lAdlu0fQk8o"
+                      title="Latest Upload"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -900,10 +930,10 @@ export default function App() {
                   </div>
                 </div>
                 <h3 className="mt-6 text-xl text-white" style={{ fontWeight: 600 }}>
-                  {/*Your Latest Video Title*/}
+                  Latest Upload
                 </h3>
                 <p className="mt-2 text-slate-400">
-                  {/*Update this with your latest YouTube video ID and title*/}
+                  Watch my newest YouTube video from the latest upload.
                 </p>
               </motion.div>
 
