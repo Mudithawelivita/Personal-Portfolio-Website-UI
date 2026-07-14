@@ -921,7 +921,7 @@ export default function App() {
                   <div className="relative bg-black" style={{ paddingBottom: '56.25%' }}>
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
-                      src="https://youtu.be/lAdlu0fQk8o?si=XjBgPVfD97T04WDt"
+                      src="https://www.youtube.com/embed/lAdlu0fQk8o?si=F-6XK450QHd56793"
                       title="Latest Upload"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
